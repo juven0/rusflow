@@ -4,3 +4,11 @@
     height: 100%;
     background-color: rgb(255, 255, 255);
 }
+
+.react-flow__node-custom {
+    padding: 10px;
+    color: rgb(99, 255, 78);
+    border: 1px solid #3eff37; 
+    border-radius: 10px;
+    min-width: 100px;
+  }
