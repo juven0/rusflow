@@ -12,8 +12,14 @@ import ReactFlow, {
 
 import './flow.scss'
 import 'reactflow/dist/style.css';
-import CustomNode from './nodes/nodes'
 import { useCallback } from 'react';
+import { NodeTypes } from './nodeType';
+
+
+const initBgColor = '#000000';
+const connectionLineStyle = { stroke: '#fff' };
+
+const nodeTypes = NodeTypes
 
 const initialNodes:Node[]= [
     {
@@ -25,16 +31,44 @@ const initialNodes:Node[]= [
       {
         id: '2',
         type:'custom',
-        data: { label: 'World' },
+        data: { 
+            label: 't1',
+            value: 'media response'
+        },
         position: { x: 100, y: 100 },
+      },
+      {
+        id: '3',
+        type:'nodeText',
+        data: { 
+            label: 'text 1',
+            text: 'text response'
+        },
+        position: { x: 300, y: 100 },
+      },
+      {
+        id: '4',
+        type:'nodeButton',
+        data: { 
+            label: 'btn',
+            text: 'button'
+        },
+        position: { x: 300, y: 200 },
+      },
+      {
+        id: '5',
+        type:'nodePayload',
+        data: { 
+            name: 'pld',
+            value: 'payload'
+        },
+        position: { x: 400, y: 200 },
       },
   ];
 
-const initialEdges:Edge[] = [{ id: '1-2', source: '1', target: '2', label: 'to the', type: 'step' }];
+const initialEdges:Edge[] = [{ id: '1-2', source: '1', target: '2', animated: true, style: { stroke: '#fff' }, }];
 
-const nodeTypes={
-    custom: CustomNode
-}
+
 
 function Flow():JSX.Element{
 
@@ -54,10 +88,17 @@ function Flow():JSX.Element{
                 onEdgesChange={onEdgesChange}    
                 onConnect={onConnect}
                 nodeTypes={nodeTypes}
+                style={{ background: initBgColor }}
+                connectionLineStyle={connectionLineStyle}
             >
                 <Background />
                 <Controls />
-                <MiniMap />
+                <MiniMap 
+                      nodeColor={(n) => {
+                        if (n.type === 'custom') return '#3eff37';
+                        return '#d4d4d4';
+                      }}
+                />
             </ReactFlow>
         </div>
     )

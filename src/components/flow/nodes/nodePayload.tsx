@@ -1,7 +1,7 @@
 import {memo} from 'react'
 import {Handle,NodeProps, Position , NodeToolbar } from 'reactflow'
 
-const CustomNode = ({
+const NodePayload = ({
     data, 
     isConnectable,
     targetPosition = Position.Top,
@@ -19,8 +19,9 @@ const CustomNode = ({
                 position={targetPosition}
                 isConnectable ={isConnectable}
             />
-            {data?.label}<br/>
-            <label htmlFor="">{data?.value}</label>
+            <label className='name' >{data?.name}</label>
+            <br/>
+            <label className='value'>{data?.value}</label>
             <Handle
                 type='source'
                 position={sourcePosition}
@@ -30,6 +31,5 @@ const CustomNode = ({
     )
 }
 
-CustomNode.displayName = "juveno Node"
 
-export default memo(CustomNode)
+export default memo(NodePayload)
