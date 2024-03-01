@@ -13,7 +13,7 @@ import ReactFlow, {
 import './flow.scss'
 import 'reactflow/dist/style.css';
 import { useCallback } from 'react';
-import { NodeTypes } from './nodeType';
+import { NodeTypes } from '../../nodeType';
 
 
 const initBgColor = '#000000';
